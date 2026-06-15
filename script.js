@@ -106,12 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Premium button -> payment
     btnPremium.addEventListener('click', () => {
-        window.location.href = 'https://pay.lowify.com.br/checkout.php?product_id=k59OPf' + window.location.search.replace('?', '&');
+        window.location.href = appendSearchToUrl('https://pay.lowify.com.br/checkout.php?product_id=k59OPf');
     });
 
     // Somente a série -> payment
     btnSerieOnly.addEventListener('click', () => {
-        window.location.href = 'https://pay.lowify.com.br/checkout.php?product_id=VQOJMo' + window.location.search.replace('?', '&');
+        window.location.href = appendSearchToUrl('https://pay.lowify.com.br/checkout.php?product_id=VQOJMo');
     });
 
     // ===========================
@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     btnExitAccept.addEventListener('click', () => {
-        window.location.href = 'https://pay.lowify.com.br/checkout.php?product_id=d5lMvu' + window.location.search.replace('?', '&');
+        window.location.href = appendSearchToUrl('https://pay.lowify.com.br/checkout.php?product_id=d5lMvu');
     });
 
     btnExitReject.addEventListener('click', () => {
@@ -214,6 +214,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function isModalOpen() {
         return premiumModal.classList.contains('active') || exitModal.classList.contains('active');
+    }
+
+    function appendSearchToUrl(url) {
+        const search = window.location.search || '';
+        if (!search) return url;
+        return url.indexOf('?') === -1 ? url + search : url + '&' + search.slice(1);
     }
 
     // ===========================
